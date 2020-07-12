@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-svc
+  namespace: development
+spec:
+  type: NodePort
+  ports:
+  - name: http
+    port: 80 
+    nodePort: 31001
+    # targetPort is optional if same as port
+    # protocol is optional with default value TCP
+  selector:
+    app: nginx

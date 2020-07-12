@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: number-generator-pod
+spec:
+  containers:
+  - name: number-generator-container
+    image: alpine
+    command: ["/bin/sh", "-c"]
+    args: ["shuf -i 0-100 -n 1 >> /opt/num.txt"]
+    volumeMounts:
+    - name: my-volume
+      mountPath: /opt
+  
+  volumes:
+  - name: my-volume
+    hostPath:
+      path: /k8s/data

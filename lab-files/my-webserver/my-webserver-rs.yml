@@ -1,0 +1,24 @@
+apiVersion: apps/v1 # first change
+kind: ReplicaSet # second change
+metadata:
+  name: nginx-rs # third change
+  namespace: development # specify the namespace here
+spec:
+  replicas: 3
+  selector: # fourth change
+  # matchLabels:
+  #   app: nginx
+    matchExpressions:
+    - {key: app, operator: In, values: [nginx]}
+  template:
+    metadata:
+      name: nginx-rs-pod
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+          protocol: TCP

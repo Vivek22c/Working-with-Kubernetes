@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: k8s-bootcamp-pod
+  labels:
+    app: k8s-bootcamp
+spec:
+  containers:
+  - name: k8s-bootcamp-container
+    image: gcr.io/google-samples/kubernetes-bootcamp:v1
+    ports:
+    - containerPort: 8080

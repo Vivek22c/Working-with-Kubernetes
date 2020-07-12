@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1 # Note the changes from Pod file
+kind: Deployment # Note the change
+metadata:
+  name: k8s-bootcamp-deploy
+  labels:
+    app: k8s-bootcamp-app
+spec:
+  replicas: 1 # number of replicas
+  selector: # selector
+    matchLabels: 
+      app: k8s-bootcamp # this should match the Pod label in spec
+  template: # template    
+    metadata:
+      name: k8s-bootcamp-pod
+      labels:
+        app: k8s-bootcamp # Pod label
+    spec:
+      containers:
+      - name: k8s-bootcamp-container
+        image: gcr.io/google-samples/kubernetes-bootcamp:v1
+        ports:
+        - containerPort: 8080
